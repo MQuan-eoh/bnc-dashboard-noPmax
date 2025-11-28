@@ -39,11 +39,12 @@
 }
 
 .header-label {
-  font-size: 0.9rem;
-  color: #a0a0a0;
+  font-size: 1.1rem;
+  color: #ffffff;
   margin-bottom: 0.25rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-weight: 500;
 }
 
 .header-value {
@@ -70,7 +71,7 @@
 
 .phase-label {
   font-size: 1rem;
-  color: #ccc;
+  color: #ffffff;
   font-weight: 500;
 }
 
@@ -89,7 +90,7 @@
 .glass-panel {
   position: relative;
   /* Lighter, more transparent background as requested */
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(77 76 76 / 19%);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 
@@ -163,7 +164,7 @@
 .panel-title {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #a0a0a0;
+  color: #ffffff;
 }
 
 .panel-value {
@@ -182,8 +183,9 @@
   display: flex;
   justify-content: space-between;
   margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #ccc;
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: 500;
 }
 
 .collapse-btn {
