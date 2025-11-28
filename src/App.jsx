@@ -1,5 +1,17 @@
 import { useState } from "react";
 import "./App.css";
+import EnergyChart from "./components/EnergyChart";
+import Bar3DChart from "./components/Bar3DChart";
+
+// Helper to generate mock history data
+const generateMockHistory = (baseValue, variance, count = 24) => {
+  return Array.from({ length: count }, (_, i) => ({
+    time: `${i}:00`,
+    value: Number(
+      (baseValue + (Math.random() * variance * 2 - variance)).toFixed(1)
+    ),
+  }));
+};
 
 function App() {
   const [showFullTHD, setShowFullTHD] = useState(false);
@@ -45,6 +57,12 @@ function App() {
     },
   };
 
+  // Generate mock history for charts
+  const voltageHistory = generateMockHistory(220, 5);
+  const currentHistory = generateMockHistory(15, 2);
+  const powerHistory = generateMockHistory(3.5, 0.5);
+  const thdHistory = generateMockHistory(2.5, 0.2);
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
@@ -66,6 +84,7 @@ function App() {
         </div>
       </div>
 
+      {/* Main Data Grid */}
       <div className="grid-container">
         {/* Voltage */}
         <div className="glass-panel">
@@ -93,6 +112,14 @@ function App() {
               </span>
             </div>
           </div>
+          <EnergyChart
+            id="voltageChart"
+            data={voltageHistory}
+            dataKey="value"
+            color="#ffd700"
+            unit="V"
+            height="150px"
+          />
         </div>
 
         {/* Current */}
@@ -121,6 +148,14 @@ function App() {
               </span>
             </div>
           </div>
+          <EnergyChart
+            id="currentChart"
+            data={currentHistory}
+            dataKey="value"
+            color="#00ff00"
+            unit="A"
+            height="150px"
+          />
         </div>
 
         {/* Power */}
@@ -155,21 +190,39 @@ function App() {
               </span>
             </div>
           </div>
+          <EnergyChart
+            id="powerChart"
+            data={powerHistory}
+            dataKey="value"
+            color="#ff8c00"
+            unit="kW"
+            height="150px"
+          />
         </div>
 
-        {/* Pmax, Imax */}
+        {/* Pmin / Pmax */}
         <div className="glass-panel">
           <div className="panel-header">
-            <span className="panel-title">Pmax / Imax</span>
+            <span className="panel-title">Pmin / Pmax</span>
             <span className="icon">📈</span>
+          </div>
+
+          <div style={{ width: "100%", height: "180px" }}>
+            <Bar3DChart
+              data={[
+                { name: "Pmin", value: data.summary.pMin, fill: "#00e676" },
+                { name: "Pmax", value: data.summary.pMax, fill: "#ff3d00" },
+              ]}
+            />
+          </div>
+
+          <div className="sub-value">
+            <span>Pmin:</span>
+            <span>{data.summary.pMin} kW</span>
           </div>
           <div className="sub-value">
             <span>Pmax:</span>
-            <span>{data.maxValues.pMax} kW</span>
-          </div>
-          <div className="sub-value">
-            <span>Imax:</span>
-            <span>{data.maxValues.iMax} A</span>
+            <span>{data.summary.pMax} kW</span>
           </div>
         </div>
 
@@ -183,6 +236,15 @@ function App() {
             <span className="panel-value">{data.thd.main}</span>
             <span className="panel-unit">%</span>
           </div>
+
+          <EnergyChart
+            id="thdChart"
+            data={thdHistory}
+            dataKey="value"
+            color="#00bfff"
+            unit="%"
+            height="150px"
+          />
 
           <button
             className="collapse-btn"

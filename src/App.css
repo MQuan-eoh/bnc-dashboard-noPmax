@@ -1,15 +1,16 @@
 #root {
   width: 100%;
-  max-width: 1400px;
+  max-width: 100%; /* Use full width */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem; /* Reduced padding */
   text-align: center;
+  box-sizing: border-box;
 }
 
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem; /* Reduced gap */
   width: 100%;
 }
 
@@ -18,15 +19,16 @@
 }
 
 .dashboard-header {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.08);
+  width: 98%; /* Reduced width slightly to prevent edge overflow */
+  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+  background: rgba(0, 0, 0, 0.7);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 2rem auto; /* Center the header and keep bottom margin */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: space-around; /* Distribute items evenly */
@@ -65,7 +67,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
 }
 
@@ -89,15 +91,15 @@
 
 .glass-panel {
   position: relative;
-  /* Lighter, more transparent background as requested */
-  background: rgb(77 76 76 / 19%);
+  /* Darker background for contrast with white body */
+  background: rgba(0, 0, 0, 0.75);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 
   /* Initial border state */
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1rem; /* Reduced padding from 1.5rem */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   text-align: left;
@@ -127,7 +129,7 @@
 
 .glass-panel:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.15); /* Even lighter on hover */
+  background: rgba(0, 0, 0, 0.85); /* Darker/Stronger on hover */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 242, 255, 0.2);
   border-color: transparent; /* Hide real border to show the running one */
 }

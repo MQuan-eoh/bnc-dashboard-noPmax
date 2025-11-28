@@ -32,29 +32,29 @@ body {
   /* Background Image Setup */
   background-color: #0f0f13; /* Fallback color */
   /* Added linear-gradient to darken the image directly on the body */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
-    url("background1.jpg");
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("background1.jpg"); */
+  background-color: #eef2f6; /* Light cool grey for a modern look */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
-/* Overlay to apply blur (darkness handled by body background now) */
-body::after {
+/* Overlay removed for white background */
+/* body::after {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Reduced overlay opacity since body has gradient, but kept some for depth */
   background: rgba(0, 0, 0, 0.2);
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
   z-index: -1;
   pointer-events: none;
-}
+} */
 
 h1 {
   font-size: 3.2em;
