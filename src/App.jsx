@@ -32,6 +32,34 @@ const MinMaxTable = ({ phase1, phase2, phase3 }) => {
   );
 };
 
+const Header = ({ activePower, activeEnergy }) => {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="dashboard-header">
+      <div className="header-item">
+        <span className="header-label">Current Time</span>
+        <span className="header-value">
+          {currentTime.toLocaleString("vi-VN")}
+        </span>
+      </div>
+      <div className="header-item">
+        <span className="header-label">Active Power Total</span>
+        <span className="header-value">{activePower.toFixed(2)} kW</span>
+      </div>
+      <div className="header-item">
+        <span className="header-label">Active Energy Delivered</span>
+        <span className="header-value">{activeEnergy.toFixed(2)} kWh</span>
+      </div>
+    </div>
+  );
+};
+
 function App() {
   const [showFullTHD, setShowFullTHD] = useState(false);
   const configIdsRef = useRef([]);
@@ -248,6 +276,10 @@ function App() {
 
   return (
     <div className="dashboard-container">
+      <Header
+        activePower={data.extra.activePowerTotal}
+        activeEnergy={data.extra.activeEnergyDelivered}
+      />
       {/* Main Data Grid */}
       <div className="grid-container">
         {/* Voltage */}
@@ -464,43 +496,6 @@ function App() {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Active Power & Energy */}
-        <div className="glass-panel">
-          <div className="panel-header">
-            <span className="panel-title">Active Power & Energy</span>
-          </div>
-          <div style={{ width: "100%", height: "180px" }}>
-            <Bar3DChart
-              data={[
-                {
-                  name: "Power",
-                  value: data.extra.activePowerTotal,
-                  fill: "#2979FF",
-                },
-                {
-                  name: "Energy",
-                  value: data.extra.activeEnergyDelivered,
-                  fill: "#FFC107",
-                },
-              ]}
-            />
-          </div>
-          <div className="phase-grid">
-            <div className="phase-item">
-              <span className="phase-label">Active Power Total</span>
-              <span className="phase-value">
-                {data.extra.activePowerTotal.toFixed(2)} kW
-              </span>
-            </div>
-            <div className="phase-item">
-              <span className="phase-label">Active Energy Delivered</span>
-              <span className="phase-value">
-                {data.extra.activeEnergyDelivered.toFixed(2)} kWh
-              </span>
-            </div>
-          </div>
         </div>
       </div>
       <ThemeSettings />
