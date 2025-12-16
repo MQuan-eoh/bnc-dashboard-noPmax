@@ -71,11 +71,11 @@ const Header = ({ activePower, activeEnergy }) => {
         </span>
       </div>
       <div className="header-item">
-        <span className="header-label">Active Power Total</span>
+        <span className="header-label">Power Total</span>
         <span className="header-value">{activePower.toFixed(2)} kW</span>
       </div>
       <div className="header-item">
-        <span className="header-label">Active Energy Delivered</span>
+        <span className="header-label">Energy Delivered</span>
         <span className="header-value">{activeEnergy.toFixed(2)} kWh</span>
       </div>
     </div>
