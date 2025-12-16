@@ -61,7 +61,13 @@ const Header = ({ activePower, activeEnergy }) => {
       <div className="header-item">
         <span className="header-label">Current Time</span>
         <span className="header-value">
-          {currentTime.toLocaleString("vi-VN")}
+          <span className="time-part">
+            {currentTime.toLocaleTimeString("vi-VN")}
+          </span>
+          <span className="date-part">
+            {" "}
+            {currentTime.toLocaleDateString("vi-VN")}
+          </span>
         </span>
       </div>
       <div className="header-item">

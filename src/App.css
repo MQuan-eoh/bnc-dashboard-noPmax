@@ -385,3 +385,13 @@
     text-align: right;
   }
 }
+
+/* Hide time on tablet and mobile to save space */
+@media screen and (max-width: 1024px) {
+  .time-part {
+    display: none;
+  }
+  .date-part {
+    margin-left: 0;
+  }
+}
