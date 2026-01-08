@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
-  AreaChart,
-  Area,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -31,7 +31,7 @@ const EnergyChart = ({
   return (
     <div style={{ height: height, width: "100%", marginTop: "1rem" }}>
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart
+        <LineChart
           data={data}
           margin={{
             top: 5,
@@ -40,21 +40,6 @@ const EnergyChart = ({
             bottom: 0,
           }}
         >
-          <defs>
-            {lines.map((line) => (
-              <linearGradient
-                key={line.key}
-                id={`color-${id}-${line.key}`}
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="1"
-              >
-                <stop offset="5%" stopColor={line.color} stopOpacity={0.8} />
-                <stop offset="95%" stopColor={line.color} stopOpacity={0} />
-              </linearGradient>
-            ))}
-          </defs>
           <CartesianGrid
             strokeDasharray="3 3"
             stroke="rgba(255,255,255,0.1)"
@@ -90,18 +75,18 @@ const EnergyChart = ({
             wrapperStyle={{ cursor: "pointer", paddingTop: "10px" }}
           />
           {lines.map((line) => (
-            <Area
+            <Line
               key={line.key}
               type="monotone"
               dataKey={line.key}
               name={line.name}
               stroke={line.color}
-              fillOpacity={1}
-              fill={`url(#color-${id}-${line.key})`}
+              strokeWidth={2}
+              dot={false}
               hide={hiddenKeys.includes(line.key)}
             />
           ))}
-        </AreaChart>
+        </LineChart>
       </ResponsiveContainer>
     </div>
   );
