@@ -115,6 +115,7 @@ function App() {
     current: {
       i1: 0,
       i2: 0,
+      i3: 0,
       unit: "A",
     },
     power: {
