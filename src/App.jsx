@@ -69,9 +69,7 @@ function App() {
       p1: 0,
       p2: 0,
       p3: 0,
-      pMax1: 0,
-      pMax2: 0,
-      pMax3: 0,
+
       total: 0,
       unit: "kW",
     },
@@ -157,9 +155,7 @@ function App() {
       const iMax2 = getValue(25);
       const iMax3 = getValue(26);
 
-      const pMax1 = getValue(27);
-      const pMax2 = getValue(28);
-      const pMax3 = getValue(29);
+
 
       const thdMain = Math.max(thdI1, thdI2, thdI3);
       const time = new Date().toLocaleTimeString([], { hour12: false });
@@ -169,7 +165,7 @@ function App() {
         return {
           voltage: { u1, u2, u3, uMax1, uMax2, uMax3, unit: "V" },
           current: { i1, i2, i3, iMax1, iMax2, iMax3, unit: "A" },
-          power: { p1, p2, p3, pMax1, pMax2, pMax3, total: pTotal, unit: "kW" },
+          power: { p1, p2, p3, total: pTotal, unit: "kW" },
           thd: {
             main: thdMain,
             details: { thdI1, thdI2, thdI3, thdU1N, thdU2N, thdU3N },
@@ -398,26 +394,7 @@ function App() {
             unit="kW"
             height="150px"
           />
-          <div className="max-values-container">
-            <div className="max-item">
-              <span className="max-label">Max P12</span>
-              <span className="max-value">
-                {data.power.pMax1.toFixed(2)} {data.power.unit}
-              </span>
-            </div>
-            <div className="max-item">
-              <span className="max-label">Max P23</span>
-              <span className="max-value">
-                {data.power.pMax2.toFixed(2)} {data.power.unit}
-              </span>
-            </div>
-            <div className="max-item">
-              <span className="max-label">Max P31</span>
-              <span className="max-value">
-                {data.power.pMax3.toFixed(2)} {data.power.unit}
-              </span>
-            </div>
-          </div>
+
         </div>
 
         {/* Cos Phi */}
